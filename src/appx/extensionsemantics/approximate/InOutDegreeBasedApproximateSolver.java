@@ -89,7 +89,7 @@ public class InOutDegreeBasedApproximateSolver extends Solver {
 		if (argumentName == null) {
 			throw new UnsupportedOperationException("This solver requires an argument name in the options.");
 		}
-		int argument = Integer.valueOf(argumentName);
+		int argument = Integer.valueOf(argumentName) - 1;
 		
 		/* Grounded part */
 		

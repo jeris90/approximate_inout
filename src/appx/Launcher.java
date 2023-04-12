@@ -179,7 +179,6 @@ public class Launcher {
 			af = AFParser.readingCNF(afFile);
 			long temps_end = System.currentTimeMillis();
 			System.out.print((temps_end - temps_start)/1000.+";");
-				
 			
 			solver = new InOutDegreeBasedApproximateSolver();
 				
