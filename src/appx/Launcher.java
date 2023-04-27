@@ -175,10 +175,10 @@ public class Launcher {
 			ArgumentationFramework af = null;
 			Solver solver = null;
 			
-			long temps_start = System.currentTimeMillis();
+			//long temps_start = System.currentTimeMillis();
 			af = AFParser.readingCNF(afFile);
-			long temps_end = System.currentTimeMillis();
-			System.out.print((temps_end - temps_start)/1000.+";");
+			//long temps_end = System.currentTimeMillis();
+			//System.out.print((temps_end - temps_start)/1000.+";");
 			
 			solver = new InOutDegreeBasedApproximateSolver();
 				

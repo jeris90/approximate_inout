@@ -52,13 +52,14 @@ public class InOutDegreeBasedApproximateSolver extends Solver {
 				case ST:
 				case SST:
 				case ID:
-					this.threshold = af.nb_arguments(); // A DETERMINER EXACTEMENT !!!!!!
+					this.threshold = af.nb_arguments();
 					break;
 				case STG:
 					this.threshold = 0;
 					break;
 				default:
-					System.out.println("Unknown semantics");
+					System.out.println("This combination (semantics, problem) is not handled by this solver.");
+					System.exit(1);
 			}
 		}
 		
@@ -67,13 +68,14 @@ public class InOutDegreeBasedApproximateSolver extends Solver {
 				case PR:
 				case SST:
 				case STG:
-					this.threshold = af.nb_arguments(); // A DETERMINER EXACTEMENT !!!!!!
+					this.threshold = af.nb_arguments();
 					break;
 				case ST:
-					this.threshold = 0;
+					this.threshold = 0.1;
 					break;
 				default:
-					System.out.println("Unknown semantics");
+					System.out.println("This combination (semantics, problem) is not handled by this solver.");
+					System.exit(1);		
 			}
 			
 		}	
@@ -93,38 +95,38 @@ public class InOutDegreeBasedApproximateSolver extends Solver {
 		
 		/* Grounded part */
 		
-		long temps_start = System.currentTimeMillis(); // To remove
+		//long temps_start = System.currentTimeMillis();
 		Solution sol = groundedSolver.solve(new Task(Problem.SE, Semantics.GR), af);
-		long temps_end = System.currentTimeMillis(); // To remove
-		System.out.print((temps_end - temps_start)/1000.+";"); // To remove
+		//long temps_end = System.currentTimeMillis();
+		//System.out.print((temps_end - temps_start)/1000.+";"); 
 		
 		ArgumentSetSolution groundedExtension = (ArgumentSetSolution) sol;
 		
 		if (groundedExtension.containsArgument(argument)) {
-			System.out.print("None;None;"); // To remove
+			//System.out.print("None;None;"); // To remove
 			return new BinarySolution(true);
 		}
 		for (int attacker : af.get_af_attacker()[argument]) {
 			if (groundedExtension.containsArgument(attacker)) {
-				System.out.print("None;None;"); // To remove
+				//System.out.print("None;None;"); // To remove
 				return new BinarySolution(false);
 			}
 		}
 		
 		choice_threshold(task,af);
 		
-		temps_start = System.currentTimeMillis(); // To remove
+		//temps_start = System.currentTimeMillis(); // To remove
 		
 		int in_degree = af.inDegree(argument);
 		int out_degree = af.outDegree(argument);
 		boolean res = out_degree >= threshold * in_degree;
 		
-		temps_end = System.currentTimeMillis(); // To remove
+		//temps_end = System.currentTimeMillis(); // To remove
 		
 		
-		System.out.print(in_degree+";"); // To remove
-		System.out.print(out_degree+";"); // To remove
-		System.out.print((temps_end - temps_start)/1000.+";"); // To remove
+		//System.out.print(in_degree+";"); // To remove
+		//System.out.print(out_degree+";"); // To remove
+		//System.out.print((temps_end - temps_start)/1000.+";"); // To remove
 		
 		return new BinarySolution(res);
 	}
