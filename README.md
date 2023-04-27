@@ -1,5 +1,4 @@
-# ARIPOTER-Degrees: ARgumentatIon apPrOximaTE Reasoning using In/Out
-  Degrees of Arguments
+# ARIPOTER-Degrees: ARgumentatIon apPrOximaTE Reasoning using In/Out  Degrees of Arguments
 
 This tool can solve all the problems in the approximate track of [ICCMA 2023](https://iccma2023.github.io/)
 
